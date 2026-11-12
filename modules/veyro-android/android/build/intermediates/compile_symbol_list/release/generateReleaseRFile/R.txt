@@ -1,0 +1,2 @@
+int string veyro_accessibility_description 0x0
+int xml veyro_accessibility_config 0x0

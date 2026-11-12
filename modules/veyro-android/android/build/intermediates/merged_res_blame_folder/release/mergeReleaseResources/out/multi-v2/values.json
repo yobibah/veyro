@@ -1,0 +1,48 @@
+{
+    "logs": [
+        {
+            "outputFile": "expo.modules.veyroandroid.veyro-android-release-2:/values/values.xml",
+            "map": [
+                {
+                    "source": "/mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "16",
+                        "endColumns": "182",
+                        "endOffsets": "194"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "182",
+                        "endOffsets": "233"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "expo.modules.veyroandroid.veyro-android-mergeReleaseResources-0:/values/values.xml",
+            "map": [
+                {
+                    "source": "/mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "16",
+                        "endColumns": "182",
+                        "endOffsets": "194"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "182",
+                        "endOffsets": "233"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+R_DEF: Internal format may change without notice
+local
+string veyro_accessibility_description
+xml veyro_accessibility_config

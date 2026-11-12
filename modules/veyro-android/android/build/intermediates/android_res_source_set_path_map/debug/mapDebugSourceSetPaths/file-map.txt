@@ -1,0 +1,9 @@
+expo.modules.veyroandroid.veyro-android-pngs-0 /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/generated/res/pngs/debug
+expo.modules.veyroandroid.veyro-android-updated_navigation_xml-1 /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/generated/updated_navigation_xml/debug
+expo.modules.veyroandroid.veyro-android-mergeDebugResources-2 /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/incremental/debug/mergeDebugResources/merged.dir
+expo.modules.veyroandroid.veyro-android-mergeDebugResources-3 /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/incremental/debug/mergeDebugResources/stripped.dir
+expo.modules.veyroandroid.veyro-android-debug-4 /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/merged_res/debug/mergeDebugResources
+expo.modules.veyroandroid.veyro-android-debug-5 /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/packaged_res/debug/packageDebugResources
+expo.modules.veyroandroid.veyro-android-debug-6 /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/src/debug/res
+expo.modules.veyroandroid.veyro-android-main-7 /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/src/main/res
+gradleHome-0 /mnt/blueshark/.gradle
