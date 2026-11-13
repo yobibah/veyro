@@ -32,10 +32,13 @@ class VeyroAccessibilityService : AccessibilityService() {
     val target = event?.packageName?.toString() ?: return
     if (target == packageName) return
     if (VeyroPolicy.isLocked(this) && VeyroPolicy.selected(this).contains(target)) showBlocker(target)
-    else if (blocker != null) removeBlocker()
+    // Ignore unrelated window-list changes (status bar, dialogs, etc.). Only
+    // dismiss the shield when Android reports an actual foreground-window change.
+    else if (event.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED && blocker != null) removeBlocker()
   }
 
-  override fun onInterrupt() { removeBlocker() }
+  // An accessibility interruption is transient and must not expose the blocked app.
+  override fun onInterrupt() { refreshIfRunning() }
 
   override fun onDestroy() {
     removeBlocker()
@@ -50,6 +53,9 @@ class VeyroAccessibilityService : AccessibilityService() {
         setBackgroundColor(Color.rgb(10, 30, 39))
         isClickable = true
         isFocusable = true
+        // Consume the complete touch sequence so taps and gestures never reach
+        // controls in the temporarily blocked application underneath.
+        setOnTouchListener { _, _ -> true }
       }
       val content = LinearLayout(this).apply {
         orientation = LinearLayout.VERTICAL

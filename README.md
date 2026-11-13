@@ -1,16 +1,28 @@
-# Welcome to your Expo app 👋
+# Veyro
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Veyro is an Expo app with a native Android module for focus sessions and app blocking.
 
-## Get started
+## Android: notifications and uninstall protection
 
-1. Install dependencies
+The active focus session uses an Android foreground service and a dedicated low-importance notification channel. The notification is marked ongoing, shows the blocked app count and local end time, and uses Android's notification chronometer for the countdown. Android and some device manufacturers may still let the user stop a foreground service or disable notifications. On Android 13 and newer, allow Veyro notifications when prompted.
 
-   ```bash
-   npm install
-   ```
+The active flag, selected package names, and schedules are stored natively in Android `SharedPreferences`, outside the app cache. Clearing Veyro's cache therefore does not clear the policy or stop blocking. Clearing app storage/data is a different operation and erases app preferences; on a Device Owner device, Veyro also applies Android's app-management restriction during the session to block those Settings actions where supported.
 
-2. Start the app
+The notification and reboot recovery require a development or production build; Expo Go does not contain Veyro's native module.
+
+Veyro cannot prevent its own uninstall as a regular app. The native module applies `DevicePolicyManager.setUninstallBlocked` and the `DISALLOW_APPS_CONTROL` restriction only when Veyro is provisioned as the **Device Owner**. `DISALLOW_APPS_CONTROL` also prevents disabling apps and force-stopping them through normal Settings screens. These restrictions affect app management on the device and are cleared when the configured session ends. ADB or device reset can still bypass/remove device policy.
+
+Android does not provide an ordinary accessibility app with a reliable way to prevent the user from turning off its accessibility service. Device Owner mode can restrict app management, but it does not make Veyro's blocking service impossible to disable on every Android version or manufacturer build.
+
+Device Owner provisioning is intended for a dedicated or fully managed device. It generally requires a freshly reset device with no accounts or other device owner, installing the signed Veyro build, then provisioning it before normal setup. For development, install the build and run:
+
+```bash
+adb shell dpm set-device-owner com.veyro.app/expo.modules.veyroandroid.VeyroDeviceAdminReceiver
+```
+
+Check the resulting policy with `adb shell dpm list-owners`. To remove the owner for development, end the focus session and run `adb shell dpm remove-active-admin com.veyro.app/expo.modules.veyroandroid.VeyroDeviceAdminReceiver` (or factory reset if the device disallows removal). Do not provision a personal daily-use device as Device Owner without understanding Android's managed-device setup and reset requirements.
+
+## Development
 
    ```bash
    npx expo start

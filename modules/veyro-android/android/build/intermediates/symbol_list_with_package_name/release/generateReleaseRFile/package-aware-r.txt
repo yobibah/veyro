@@ -1,3 +1,4 @@
 expo.modules.veyroandroid
 string veyro_accessibility_description
 xml veyro_accessibility_config
+xml veyro_device_admin

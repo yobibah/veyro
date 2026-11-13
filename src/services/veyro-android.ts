@@ -19,16 +19,21 @@ export type NativeVeyroState = {
   schedules: NativeSchedule[];
   accessibilityEnabled: boolean;
   usageAccessEnabled: boolean;
+  deviceOwner: boolean;
+  mode: string;
 };
+export type NativeFocusStats = { todaySessions: number; todayMinutes: number; weekMinutes: number[] };
 
 type VeyroAndroidBridge = {
   getInstalledApps(): NativeVeyroApp[];
   getState(): NativeVeyroState;
-  savePolicy(enabled: boolean, packages: string[], schedules: NativeSchedule[]): Promise<void>;
+  savePolicy(enabled: boolean, packages: string[], schedules: NativeSchedule[], mode: string): Promise<void>;
   openAccessibilitySettings(): void;
   openUsageAccessSettings(): void;
   hasAccessibilityPermission(): boolean;
   getUsageSummary(): { hasAccess: boolean; totalMilliseconds: number };
+  getFocusStats(): NativeFocusStats;
+  requestNotificationPermission(): void;
 };
 
 export const veyroAndroid = Platform.OS === "android"

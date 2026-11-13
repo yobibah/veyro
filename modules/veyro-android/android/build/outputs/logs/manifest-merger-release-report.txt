@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest6850353091495130823.xml:2:13-83
-INJECTED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest6850353091495130823.xml:2:13-83
+ADDED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13179269773033196684.xml:2:13-83
+INJECTED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13179269773033196684.xml:2:13-83
 	package
-		INJECTED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest6850353091495130823.xml
+		INJECTED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13179269773033196684.xml
 	xmlns:android
-		ADDED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest6850353091495130823.xml:2:23-81
+		ADDED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13179269773033196684.xml:2:23-81
 uses-sdk
-INJECTED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest6850353091495130823.xml reason: use-sdk injection requested
-INJECTED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest6850353091495130823.xml
-INJECTED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest6850353091495130823.xml
+INJECTED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13179269773033196684.xml reason: use-sdk injection requested
+INJECTED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13179269773033196684.xml
+INJECTED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13179269773033196684.xml
 	android:targetSdkVersion
-		INJECTED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest6850353091495130823.xml
+		INJECTED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13179269773033196684.xml
 	android:minSdkVersion
-		INJECTED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest6850353091495130823.xml
+		INJECTED from /mnt/blueshark/telechargements/projets/veyro/modules/veyro-android/android/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13179269773033196684.xml

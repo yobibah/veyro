@@ -8,13 +8,15 @@
     "scheme": "veyro",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/images/icon.png"
+      "bundleIdentifier": "com.veyro.app",
+      "icon": "./assets/images/icon.png",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "com.veyro.app",
       "blockedPermissions": [
-        "android.permission.POST_NOTIFICATIONS",
-        "android.permission.RECEIVE_BOOT_COMPLETED",
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE",
         "android.permission.SYSTEM_ALERT_WINDOW",
@@ -38,9 +40,9 @@
       [
         "expo-splash-screen",
         {
-        "backgroundColor": "#FFFFFF",
-        "image": "./assets/images/splash-icon.png",
-        "imageWidth": 132
+          "backgroundColor": "#FFFFFF",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 132
         }
       ]
     ],

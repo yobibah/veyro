@@ -9,9 +9,10 @@ import { useProtection } from "../../hooks/use-protection";
 import { useLocalDate } from "../../hooks/use-local-clock";
 import { useTabScreenPadding } from "../../hooks/use-tab-screen-padding";
 import { useInstalledApps } from "../../hooks/use-installed-apps";
+import { focusModes } from "../../constants/focus-modes";
 
 export default function HomeScreen() {
-  const { isProtectionActive, startProtection, selectedAppIds, schedules, nativePermissions } = useProtection();
+  const { isProtectionActive, startProtection, selectedAppIds, schedules, nativePermissions, focusMode, applyFocusMode } = useProtection();
   const { apps } = useInstalledApps();
   const contentInsets = useTabScreenPadding();
   const date = useLocalDate();
@@ -27,6 +28,27 @@ export default function HomeScreen() {
         <Text style={[styles.statusText, isProtectionActive && styles.statusTextActive]}>
           {isProtectionActive ? "Concentration active" : "Concentration inactive"}
         </Text>
+      </View>
+
+      <View style={styles.modesSection}>
+        <View style={styles.modesHeading}>
+          <Text style={styles.modesTitle}>Modes rapides</Text>
+          <Text style={styles.modesHint}>{isProtectionActive ? "Modifiable après la session" : "Choisissez un rythme"}</Text>
+        </View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.modesRow}>
+          {focusModes.map((mode) => {
+            const selected = focusMode === mode.id;
+            const packageNames = apps.filter((app) => mode.categories.includes(app.category)).map((app) => app.packageName);
+            return (
+              <Pressable key={mode.id} onPress={() => applyFocusMode(mode.id, packageNames)} disabled={isProtectionActive} style={[styles.modeCard, selected && styles.modeCardSelected, isProtectionActive && styles.modeDisabled]} accessibilityRole="button" accessibilityState={{ selected, disabled: isProtectionActive }}>
+                <View style={[styles.modeIcon, selected && styles.modeIconSelected]}><Ionicons name={mode.icon} size={18} color={selected ? "white" : colors.greenSecondary} /></View>
+                <Text style={styles.modeName}>{mode.title}</Text>
+                <Text style={styles.modeDescription}>{mode.description}</Text>
+                <Text style={styles.modeAppCount}>{packageNames.length} applis ciblées</Text>
+              </Pressable>
+            );
+          })}
+        </ScrollView>
       </View>
 
       <Countdown startTime={currentSchedule?.start} endTime={currentSchedule?.end} />
@@ -94,6 +116,19 @@ const styles = StyleSheet.create({
   statusDotActive: { backgroundColor: colors.greenSecondary },
   statusText: { color: colors.muted, fontFamily: "Inter_700Bold", fontSize: 13 },
   statusTextActive: { color: colors.greenSecondary },
+  modesSection: { gap: 10 },
+  modesHeading: { flexDirection: "row", justifyContent: "space-between", alignItems: "baseline" },
+  modesTitle: { color: colors.ink, fontFamily: "Inter_700Bold", fontSize: 15 },
+  modesHint: { color: colors.muted, fontFamily: "Inter_400Regular", fontSize: 10 },
+  modesRow: { gap: 10, paddingRight: 4 },
+  modeCard: { width: 160, minHeight: 128, padding: 12, borderRadius: 18, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.surface, gap: 5 },
+  modeCardSelected: { borderColor: colors.greenSecondary, backgroundColor: colors.greenSoft },
+  modeDisabled: { opacity: 0.65 },
+  modeIcon: { width: 32, height: 32, borderRadius: 11, alignItems: "center", justifyContent: "center", backgroundColor: colors.greenSoft, marginBottom: 2 },
+  modeIconSelected: { backgroundColor: colors.green },
+  modeName: { color: colors.ink, fontFamily: "Inter_700Bold", fontSize: 13 },
+  modeDescription: { color: colors.muted, fontFamily: "Inter_400Regular", fontSize: 10 },
+  modeAppCount: { color: colors.greenDark, fontFamily: "Inter_700Bold", fontSize: 10, marginTop: 3 },
   hoursCard: { minHeight: 96, flexDirection: "row", borderWidth: 1, borderColor: colors.line, borderRadius: 20, backgroundColor: colors.surface, overflow: "hidden" },
   hourCell: { flex: 1, justifyContent: "center", paddingHorizontal: 17, paddingVertical: 14 },
   hourLabel: { color: colors.muted, fontFamily: "Inter_400Regular", fontSize: 12 },

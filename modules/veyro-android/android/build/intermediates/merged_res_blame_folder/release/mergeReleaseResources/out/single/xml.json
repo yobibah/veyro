@@ -1,5 +1,9 @@
 [
     {
+        "merged": "expo.modules.veyroandroid.veyro-android-release-2:/xml/veyro_device_admin.xml",
+        "source": "expo.modules.veyroandroid.veyro-android-main-3:/xml/veyro_device_admin.xml"
+    },
+    {
         "merged": "expo.modules.veyroandroid.veyro-android-release-2:/xml/veyro_accessibility_config.xml",
         "source": "expo.modules.veyroandroid.veyro-android-main-3:/xml/veyro_accessibility_config.xml"
     }

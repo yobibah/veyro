@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Process
 import android.provider.Settings
 import android.app.usage.UsageStatsManager
+import android.app.admin.DevicePolicyManager
 import android.util.Base64
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -51,7 +52,7 @@ class VeyroAndroidModule : Module() {
     }
 
     Function("getState") {
-      val context = appContext.reactContext ?: return@Function mapOf("enabled" to false, "selectedPackageNames" to emptyList<String>(), "schedules" to emptyList<Map<String, Any>>(), "accessibilityEnabled" to false, "usageAccessEnabled" to false)
+      val context = appContext.reactContext ?: return@Function mapOf("enabled" to false, "selectedPackageNames" to emptyList<String>(), "schedules" to emptyList<Map<String, Any>>(), "accessibilityEnabled" to false, "usageAccessEnabled" to false, "deviceOwner" to false, "mode" to "custom")
       val schedules = VeyroPolicy.schedules(context)
       mapOf(
         "enabled" to VeyroPolicy.enabled(context),
@@ -61,7 +62,14 @@ class VeyroAndroidModule : Module() {
         } },
         "accessibilityEnabled" to isAccessibilityEnabled(context),
         "usageAccessEnabled" to hasUsageAccess(context),
+        "deviceOwner" to context.getSystemService(DevicePolicyManager::class.java).isDeviceOwnerApp(context.packageName),
+        "mode" to VeyroPolicy.mode(context),
       )
+    }
+
+    Function("getFocusStats") {
+      val context = appContext.reactContext ?: return@Function mapOf("todaySessions" to 0, "todayMinutes" to 0, "weekMinutes" to List(7) { 0 })
+      VeyroPolicy.focusStats(context)
     }
 
     Function("getUsageSummary") {
@@ -74,10 +82,19 @@ class VeyroAndroidModule : Module() {
       mapOf("hasAccess" to true, "totalMilliseconds" to (stats?.sumOf { it.totalTimeInForeground } ?: 0L))
     }
 
-    AsyncFunction("savePolicy") { enabled: Boolean, packages: List<String>, schedules: List<Map<String, Any?>> ->
+    AsyncFunction("savePolicy") { enabled: Boolean, packages: List<String>, schedules: List<Map<String, Any?>>, mode: String ->
       val context = appContext.reactContext ?: return@AsyncFunction
-      VeyroPolicy.save(context, enabled, packages, schedules)
+      VeyroPolicy.save(context, enabled, packages, schedules, mode)
       VeyroAccessibilityService.refreshIfRunning()
+      VeyroSessionService.sync(context)
+    }
+
+    Function("requestNotificationPermission") {
+      if (Build.VERSION.SDK_INT >= 33) {
+        appContext.currentActivity?.runOnUiThread {
+          appContext.currentActivity?.requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 7318)
+        }
+      }
     }
 
     Function("openAccessibilitySettings") {
